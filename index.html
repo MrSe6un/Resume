@@ -70,11 +70,15 @@
       transform: translateY(-12px) scale(1.05);
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
     }
+    .qualities-grid {
+      perspective: 1000px;
+    }
     .quality-card {
+      transform-style: preserve-3d;
       transition: transform 0.3s ease;
     }
     .quality-card:hover {
-      transform: rotate(5deg);
+      transform: rotateY(15deg);
     }
     .hero-text {
       animation: fadeInScale 1.5s ease-in-out;
@@ -162,16 +166,47 @@
       .nav-menu.open { display: flex; }
       .nav-menu li { margin: 0.5rem 0; }
       .contact-item { flex-direction: column; text-align: center; }
+      .skill-name { font-size: 1.1rem; }
     }
     @media (max-width: 640px) {
       .container { padding-left: 1rem; padding-right: 1rem; }
       .text-4xl { font-size: 2rem; }
       .px-6.py-3 { padding: 0.75rem 1.5rem; }
-      .contact-item { padding: 0.75rem; }
+      .contact-item { padding: 1rem; }
+    }
+    /* Preloader */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="spinner"></div>
+  </div>
+
   <!-- Частицы -->
   <div id="particles-js"></div>
 
@@ -228,7 +263,7 @@
   <section id="qualities" class="py-20 bg-transparent">
     <div class="container mx-auto px-4">
       <h2 class="text-4xl font-bold text-center mb-10" data-aos="fade-up">Мои качества</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      <div class="qualities-grid grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
         <div class="quality-card bg-gray-800 p-6 rounded-lg text-center" data-aos="flip-left">
           <h3 class="text-xl font-semibold mb-2">Креативность</h3>
           <p class="text-gray-300">Придумываю оригинальные решения и фичи, которые делают проекты уникальными.</p>
@@ -317,7 +352,7 @@
       email: { icon: '📧', value: 'mr.se6un@gmail.com', link: 'mailto:mr.se6un@gmail.com' },
       telegram: { icon: '💬', value: '@Se6un', link: 'https://t.me/Se6un' },
       github: { icon: '🐙', value: 'github.com/MrSe6un', link: 'https://github.com/MrSe6un' },
-      // Добавьте другие соцсети здесь, например:
+      // Пример добавления Twitter:
       // twitter: { icon: '🐦', value: '@YourTwitter', link: 'https://twitter.com/YourTwitter' }
     };
 
@@ -330,7 +365,7 @@
       div.setAttribute('data-aos', aosDirection);
       div.setAttribute('data-aos-delay', aosDelay);
       div.innerHTML = `
-        <p class="font-semibold">${skill.name}</p>
+        <p class="font-semibold skill-name">${skill.name}</p>
         <div class="w-full bg-gray-700 rounded-full h-3">
           <div class="skill-bar ${skillAnimation.enableShine ? 'shine' : ''}" style="width: ${skill.level}%"></div>
         </div>
@@ -390,6 +425,12 @@
           bar.style.transitionDuration = `${skillAnimation.duration}ms`;
         }, 500);
       });
+      // Скрыть preloader
+      const preloader = document.getElementById('preloader');
+      preloader.style.opacity = '0';
+      setTimeout(() => {
+        preloader.style.display = 'none';
+      }, 500);
     });
 
     // Эффект прокрутки для навигации
