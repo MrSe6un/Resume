@@ -47,7 +47,7 @@
       position: relative;
       overflow: hidden;
     }
-    .skill-bar::after {
+    .skill-bar.shine::after {
       content: '';
       position: absolute;
       top: 0;
@@ -88,6 +88,20 @@
     }
     .contact-icon:hover {
       transform: scale(1.2);
+    }
+    /* Улучшенная читаемость контактов */
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      transition: background 0.3s ease;
+    }
+    .contact-item:hover {
+      background: rgba(0, 0, 0, 0.85);
     }
     /* Адаптация навигации */
     .nav-menu {
@@ -147,11 +161,13 @@
       }
       .nav-menu.open { display: flex; }
       .nav-menu li { margin: 0.5rem 0; }
+      .contact-item { flex-direction: column; text-align: center; }
     }
     @media (max-width: 640px) {
       .container { padding-left: 1rem; padding-right: 1rem; }
       .text-4xl { font-size: 2rem; }
       .px-6.py-3 { padding: 0.75rem 1.5rem; }
+      .contact-item { padding: 0.75rem; }
     }
   </style>
 </head>
@@ -204,68 +220,7 @@
   <section id="skills" class="py-20 bg-black bg-opacity-50">
     <div class="container mx-auto px-4">
       <h2 class="text-4xl font-bold text-center mb-10" data-aos="fade-up">Мои навыки</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-        <div data-aos="fade-right">
-          <p class="font-semibold">Python</p>
-          <div class="w-full bg-gray-700 rounded-full h-3">
-            <div class="skill-bar" style="width: 60%"></div>
-          </div>
-        </div>
-        <div data-aos="fade-left">
-          <p class="font-semibold">Боты (Telegram, Discord, VK)</p>
-          <div class="w-full bg-gray-700 rounded-full h-3">
-            <div class="skill-bar" style="width: 80%"></div>
-          </div>
-        </div>
-        <div data-aos="fade-right" data-aos-delay="100">
-          <p class="font-semibold">FastAPI & Flask</p>
-          <div class="w-full bg-gray-700 rounded-full h-3">
-            <div class="skill-bar" style="width: 40%"></div>
-          </div>
-        </div>
-        <div data-aos="fade-left" data-aos-delay="100">
-          <p class="font-semibold">MongoDB</p>
-          <div class="w-full bg-gray-700 rounded-full h-3">
-            <div class="skill-bar" style="width: 50%"></div>
-          </div>
-        </div>
-        <div data-aos="fade-right" data-aos-delay="200">
-          <p class="font-semibold">SQL & PostgreSQL</p>
-          <div class="w-full bg-gray-700 rounded-full h-3">
-            <div class="skill-bar" style="width: 55%"></div>
-          </div>
-        </div>
-        <div data-aos="fade-left" data-aos-delay="200">
-          <p class="font-semibold">Знание английского (чтение документации)</p>
-          <div class="w-full bg-gray-700 rounded-full h-3">
-            <div class="skill-bar" style="width: 70%"></div>
-          </div>
-        </div>
-        <div data-aos="fade-right" data-aos-delay="300">
-          <p class="font-semibold">Работа с ИИ</p>
-          <div class="w-full bg-gray-700 rounded-full h-3">
-            <div class="skill-bar" style="width: 45%"></div>
-          </div>
-        </div>
-        <div data-aos="fade-left" data-aos-delay="300">
-          <p class="font-semibold">Поиск информации</p>
-          <div class="w-full bg-gray-700 rounded-full h-3">
-            <div class="skill-bar" style="width: 75%"></div>
-          </div>
-        </div>
-        <div data-aos="fade-right" data-aos-delay="400">
-          <p class="font-semibold">Docker</p>
-          <div class="w-full bg-gray-700 rounded-full h-3">
-            <div class="skill-bar" style="width: 40%"></div>
-          </div>
-        </div>
-        <div data-aos="fade-left" data-aos-delay="400">
-          <p class="font-semibold">Автоматизация & Скрипты</p>
-          <div class="w-full bg-gray-700 rounded-full h-3">
-            <div class="skill-bar" style="width: 70%"></div>
-          </div>
-        </div>
-      </div>
+      <div id="skills-container" class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"></div>
     </div>
   </section>
 
@@ -319,18 +274,10 @@
     <div class="container mx-auto px-4">
       <h2 class="text-4xl font-bold text-center mb-10" data-aos="fade-up">Давай создавать вместе!</h2>
       <div class="max-w-lg mx-auto text-center">
-        <p class="text-lg text-gray-300 mb-6" data-aos="fade-up" data-aos-delay="100">
+        <p class="text-xl text-gray-100 mb-8" data-aos="fade-up" data-aos-delay="100">
           Хочешь крутого бота или новую фичу? Напиши мне!
         </p>
-        <p class="text-lg text-gray-300 mb-4" data-aos="fade-up" data-aos-delay="200">
-          <span class="contact-icon">📧</span> Email: <a href="mailto:mr.se6un@gmail.com" class="text-blue-400 hover:underline">mr.se6un@gmail.com</a>
-        </p>
-        <p class="text-lg text-gray-300 mb-4" data-aos="fade-up" data-aos-delay="300">
-          <span class="contact-icon">💬</span> Telegram: <a href="https://t.me/Se6un" class="text-blue-400 hover:underline">@Se6un</a>
-        </p>
-        <p class="text-lg text-gray-300" data-aos="fade-up" data-aos-delay="400">
-          <span class="contact-icon">🐙</span> GitHub: <a href="https://github.com/MrSe6un" class="text-blue-400 hover:underline">github.com/MrSe6un</a>
-        </p>
+        <div id="contact-container"></div>
       </div>
     </div>
   </section>
@@ -345,6 +292,67 @@
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
+    // Конфигурация навыков
+    const skills = [
+      { name: 'Python', level: 60 },
+      { name: 'Боты (Telegram, Discord, VK)', level: 80 },
+      { name: 'FastAPI & Flask', level: 40 },
+      { name: 'MongoDB', level: 50 },
+      { name: 'SQL & PostgreSQL', level: 55 },
+      { name: 'Знание английского (чтение документации)', level: 70 },
+      { name: 'Работа с ИИ', level: 45 },
+      { name: 'Поиск информации', level: 75 },
+      { name: 'Docker', level: 40 },
+      { name: 'Автоматизация & Скрипты', level: 70 }
+    ];
+
+    // Конфигурация анимации навыков
+    const skillAnimation = {
+      enableShine: true, // Измените на false, чтобы убрать эффект shine
+      duration: 2500 // Длительность анимации заполнения в мс
+    };
+
+    // Конфигурация контактов
+    const contacts = {
+      email: { icon: '📧', value: 'mr.se6un@gmail.com', link: 'mailto:mr.se6un@gmail.com' },
+      telegram: { icon: '💬', value: '@Se6un', link: 'https://t.me/Se6un' },
+      github: { icon: '🐙', value: 'github.com/MrSe6un', link: 'https://github.com/MrSe6un' },
+      // Добавьте другие соцсети здесь, например:
+      // twitter: { icon: '🐦', value: '@YourTwitter', link: 'https://twitter.com/YourTwitter' }
+    };
+
+    // Рендеринг навыков
+    const skillsContainer = document.getElementById('skills-container');
+    skills.forEach((skill, index) => {
+      const aosDirection = index % 2 === 0 ? 'fade-right' : 'fade-left';
+      const aosDelay = Math.floor(index / 2) * 100;
+      const div = document.createElement('div');
+      div.setAttribute('data-aos', aosDirection);
+      div.setAttribute('data-aos-delay', aosDelay);
+      div.innerHTML = `
+        <p class="font-semibold">${skill.name}</p>
+        <div class="w-full bg-gray-700 rounded-full h-3">
+          <div class="skill-bar ${skillAnimation.enableShine ? 'shine' : ''}" style="width: ${skill.level}%"></div>
+        </div>
+      `;
+      skillsContainer.appendChild(div);
+    });
+
+    // Рендеринг контактов
+    const contactContainer = document.getElementById('contact-container');
+    Object.keys(contacts).forEach((key, index) => {
+      const contact = contacts[key];
+      const div = document.createElement('div');
+      div.className = 'contact-item';
+      div.setAttribute('data-aos', 'fade-up');
+      div.setAttribute('data-aos-delay', (200 + index * 100));
+      div.innerHTML = `
+        <span class="contact-icon mr-2">${contact.icon}</span>
+        <a href="${contact.link}" class="text-blue-400 hover:underline text-lg">${contact.value}</a>
+      `;
+      contactContainer.appendChild(div);
+    });
+
     // Инициализация AOS
     AOS.init({
       duration: 1200,
@@ -379,6 +387,7 @@
         bar.style.width = '0';
         setTimeout(() => {
           bar.style.width = width;
+          bar.style.transitionDuration = `${skillAnimation.duration}ms`;
         }, 500);
       });
     });
@@ -401,7 +410,7 @@
           behavior: 'smooth'
         });
         if (window.innerWidth <= 768) {
-          toggleMenu(); // Закрыть меню после клика на мобильных
+          toggleMenu();
         }
       });
     });
